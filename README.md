@@ -1,2 +1,2 @@
 # DevChat
-dev chat
+dev chat .
