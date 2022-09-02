@@ -5,18 +5,13 @@ class DBClient {
     this.host = 'localhost';
     this.port = '27017';
     this.database = 'devchat';
-    try {
-      this.client = new mongoose.connect(
-        `mongodb://${this.host}:${this.port}/${this.database}`,
-        { useUnifiedTopology: true }
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
-  isAlive() {
-    return this.client.readyState;
+    this.client = new mongoose.connect(
+      `mongodb://${this.host}:${this.port}/${this.database}`,
+      {
+        useUnifiedTopology: true,
+      }
+    );
   }
 }
 
