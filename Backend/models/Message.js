@@ -18,7 +18,7 @@ const messageSchema = new mongoose.Schema({
   ],
   createdAt: {
     type: Date,
-    immutable: false,
+    immutable: true,
     default: () => Date.now(),
   },
   updatedAt: {
@@ -27,6 +27,6 @@ const messageSchema = new mongoose.Schema({
   },
 });
 
-const Message = new mongoose.model('Message', messageSchema);
+const Message = mongoose.model('User', messageSchema);
 
 export default Message;
