@@ -21,6 +21,7 @@ router.get('/msg', AuthenticateToken.verifyToken, MessagesController.getMsg);
 router.post('/login', AuthController.login);
 router.get('/logout', AuthController.logout);
 
+// route to refresh token
 router.get('/refresh', RefreshTokenController.handleRefreshToken);
 
 export default router;
