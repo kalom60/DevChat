@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
 import axios from 'axios';
-import { registerRoute } from '../utils/ApiRoutes';
+// import { registerRoute } from '../utils/ApiRoutes';
 
 function Register() {
  const navigate = useNavigate()
@@ -40,7 +40,7 @@ function Register() {
             specialization, address
         } = values;
 
-        const {data} = await axios.post(registerRoute, {firstName, lastName, password,
+        const {data} = await axios.post("/register", {firstName, lastName, password,
              username, email,
             linkedinProfile, githubProfile, experience,
             specialization, address});
@@ -50,7 +50,7 @@ function Register() {
             }
             if (data.status === true) {
                 localStorage.setItem('devChat-user', JSON.stringify(data.user))
-                navigate("/")
+                navigate("/login")
             }
         }
   }
