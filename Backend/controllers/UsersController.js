@@ -4,7 +4,8 @@ import User from '../models/User';
 class UsersController {
   static async newUser(req, res) {
     const slug = `http://localhost.com/${req.body.userName}`;
-    address.email = req.body.email;
+    const address = req.body.address;
+    address.email = email;
 
     const newuser = {
       firstName: req.body.firstName,
@@ -17,7 +18,7 @@ class UsersController {
       image: req.body.image,
       expreience: req.body.expreience,
       title: req.body.title,
-      address: req.body.address,
+      address,
       slug,
     };
 
