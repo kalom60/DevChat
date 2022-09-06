@@ -1,6 +1,6 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 import router from './routes';
 import dbClient from './utils/db';
@@ -8,8 +8,9 @@ import dbClient from './utils/db';
 const port = 5000;
 const app = express();
 
-app.use(bodyParser.json({ limit: '50mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(cookieParser());
+app.use(express.json({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 app.use(router);
 
