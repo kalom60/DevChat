@@ -1,6 +1,4 @@
-require('dotenv').config();
 import express from 'express';
-import jwt from 'jsonwebtoken';
 import MessagesController from '../controllers/MessagesController';
 import UsersController from '../controllers/UsersController';
 import AuthController from '../controllers/AuthController';
