@@ -3,35 +3,21 @@ import User from '../models/User';
 
 class UsersController {
   static async newUser(req, res) {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      userName,
-      github,
-      linkedIn,
-      image,
-      expreience,
-      title,
-      address,
-    } = req.body;
-
-    const slug = `http://localhost.com/${userName}`;
-    address.email = email;
+    const slug = `http://localhost.com/${req.body.userName}`;
+    address.email = req.body.email;
 
     const newuser = {
-      firstName,
-      lastName,
-      email,
-      password,
-      userName,
-      github,
-      linkedIn,
-      image,
-      expreience,
-      title,
-      address,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      userName: req.body.userName,
+      github: req.body.github,
+      linkedIn: req.body.linkedIn,
+      image: req.body.image,
+      expreience: req.body.expreience,
+      title: req.body.title,
+      address: req.body.address,
       slug,
     };
 
