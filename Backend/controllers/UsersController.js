@@ -1,11 +1,10 @@
-require('dotenv').config();
 import User from '../models/User';
 
 class UsersController {
   static async newUser(req, res) {
     const slug = `http://localhost.com/${req.body.userName}`;
     const address = req.body.address;
-    address.email = email;
+    address.email = req.body.email;
 
     const newuser = {
       firstName: req.body.firstName,
