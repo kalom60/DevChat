@@ -10,7 +10,6 @@ git clone https://github.com/kalom60/DevChat.git
 ```
 
 ## Usage
-
 ```goes to the backend folder and install all the dependances using
 npm install
 
