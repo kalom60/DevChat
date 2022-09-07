@@ -23,7 +23,8 @@ dbClient.client
   )
   .catch(() => console.log('DB not connected'));
 
- // integrating front end with backend with socket
+ // integrating front end and  backend with socket.io
+
  const io = socket(server, {
   cors: {
     origin: "http://localhost:3000",
