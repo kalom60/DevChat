@@ -7,6 +7,7 @@ import dbClient from './utils/db';
 
 const port = 5000;
 const app = express();
+const socket = require("socket.io");
 
 app.use(cookieParser());
 app.use(express.json({ limit: '50mb', extended: true }));
@@ -21,3 +22,26 @@ dbClient.client
     })
   )
   .catch(() => console.log('DB not connected'));
+
+ // integrating front end with backend with socket
+ const io = socket(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    credentials: true,
+  },
+});
+
+global.onlineUsers = new Map();
+io.on("connection", (socket) => {
+  global.chatSocket = socket;
+  socket.on("add-user", (user_id) => {
+    onlineUsers.set(user_id, socket.id);
+  });
+
+  socket.on("send-msg", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to);
+    if (sendUserSocket) {
+      socket.to(sendUserSocket).emit("msg-recieve", data.msg);
+    }
+  });
+});
