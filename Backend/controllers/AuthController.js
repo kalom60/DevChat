@@ -16,6 +16,7 @@ class AuthController {
       if (await bcrypt.compare(password, user.password)) {
         const id = user._id.toString();
         const user_id = { id: id };
+
         const token = await GenerateToken.generateAccessToken(user_id);
         const refreshToken = await GenerateToken.generateRefreshToken(user_id);
 
