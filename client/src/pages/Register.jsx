@@ -14,7 +14,7 @@ import { AiFillLinkedin, AiFillExperiment } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+import axios from '../axiosInstance';
 // import { registerRoute } from '../utils/ApiRoutes';
 
 function Register() {
@@ -28,8 +28,8 @@ function Register() {
     confirmPassword: '',
     linkedin: '',
     github: '',
-    experience: '',
-    specialization: '',
+    expreience: '',
+    title: '',
     country: '',
     city: '',
   });
@@ -53,8 +53,8 @@ function Register() {
         email,
         linkedIn,
         github,
-        experience,
-        specialization,
+        expreience,
+        title,
         country,
         city,
       } = values;
@@ -67,40 +67,42 @@ function Register() {
         email,
         linkedIn,
         github,
-        experience,
-        specialization,
-        country,
-        city,
+        expreience,
+        title,
+        address: {
+          country,
+          city,
+        },
       };
 
       console.log(user);
 
-      //   const { data } = await axios.post('/register', {
-      //     firstName,
-      //     lastName,
-      //     password,
-      //     userName,
-      //     email,
-      //     linkedIn,
-      //     github,
-      //     experience,
-      //     specialization,
-      //     country,
-      //     city,
-      //   });
-
-      //   if (data.status === false) {
-      //     toast.error(data.msg, toastOptions);
-      //   }
-      //   if (data.status === true) {
-      //     localStorage.setItem('devChat-user', JSON.stringify(data.user));
-      //     navigate('/login');
-      //   }
+      axios
+        .post('/register', user)
+        .then((res) => {
+          console.log(res.data);
+          navigate('/login');
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          toast.error(err.response.data, toastOptions);
+        });
     }
   };
 
   const handleValidation = () => {
-    const { password, confirmPassword, userName, email } = values;
+    const {
+      password,
+      confirmPassword,
+      userName,
+      email,
+      firstName,
+      lastName,
+      expreience,
+      title,
+      country,
+      city,
+    } = values;
     if (password !== confirmPassword) {
       toast.error('password should be the same', toastOptions);
       return false;
@@ -116,6 +118,18 @@ function Register() {
     } else if (email === '') {
       toast.error('email is required', toastOptions);
       return false;
+    } else if (firstName === '') {
+      toast.error('firstName is required', toastOptions);
+    } else if (lastName === '') {
+      toast.error('lastName is required', toastOptions);
+    } else if (expreience === '') {
+      toast.error('expreience is required', toastOptions);
+    } else if (title === '') {
+      toast.error('specialization is required', toastOptions);
+    } else if (country === '') {
+      toast.error('country is required', toastOptions);
+    } else if (city === '') {
+      toast.error('city is required', toastOptions);
     }
     return true;
   };
@@ -156,7 +170,7 @@ function Register() {
                           type="text"
                           placeholder="Enter your last name"
                           required
-                          name="lasttName"
+                          name="lastName"
                           onChange={(e) => handleChange(e)}
                         />
                         <i className="icon">
@@ -249,7 +263,7 @@ function Register() {
                           type="text"
                           placeholder="Enter your exprience"
                           required
-                          name="exprience"
+                          name="expreience"
                           onChange={(e) => handleChange(e)}
                         />
                         <i className="icon">
@@ -262,7 +276,7 @@ function Register() {
                           type="text"
                           placeholder="Enter your specialization"
                           required
-                          name="specialization"
+                          name="title"
                           onChange={(e) => handleChange(e)}
                         />
                         <i className="icon">
@@ -297,7 +311,7 @@ function Register() {
                       </div>
                     </div>
                   </div>
-                  <div className="button">
+                  <div className="btn">
                     <button type="submit">Signup</button>
                   </div>
                 </form>
@@ -447,11 +461,11 @@ const FormContainer = styled.div`
     text-decoration: underline;
   }
 
-  .form .button {
+  .form .btn {
     margin-top: 30px;
   }
 
-  .form .button button{
+  .form .btn button{
     position: relative;
     height: 50px;
     width: 50%;
@@ -467,7 +481,7 @@ const FormContainer = styled.div`
     transition: all 0.3s ease;
   }
 
-  .button input:hover {
+  .btn button:hover {
     background-color: #265df2;
   }
 
@@ -476,13 +490,13 @@ const FormContainer = styled.div`
     text-align: center;
   }
 
-  .signup-text {
+  .login-text {
     font-size: 14px;
     color: #4070f4;
     text-decoration: none;
   }
 
-  .signup-text:hover {
+  .login-text:hover {
     text-decoration: underline;
   }
 `;
