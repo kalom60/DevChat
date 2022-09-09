@@ -22,7 +22,12 @@ class UsersController {
     };
 
     const user = new User(newuser);
-    await user.save();
+    try {
+      await user.save();
+    } catch (err) {
+      const errs = err.message.split(':')[3].split(' ')[2];
+      return res.status(404).json(`${errs} already exist`);
+    }
     // console.log(user);
     return res.status(200).json(user);
   }
@@ -54,6 +59,15 @@ class UsersController {
       expreience,
       title,
     });
+  }
+
+  static async allUsers(req, res) {
+    try {
+      const users = await User.find();
+      return res.json(users);
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
