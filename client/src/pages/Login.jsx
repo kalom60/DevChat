@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../axiosInstance';
 import { BiEnvelope, BiLock, BiLowVision } from 'react-icons/bi';
 import styled from 'styled-components';
 import { useNavigate, Link } from 'react-router-dom';
@@ -28,8 +28,8 @@ export default function Login() {
   };
 
   const validateForm = () => {
-    const { username, password } = values;
-    if (username === '') {
+    const { email, password } = values;
+    if (email === '') {
       toast.error('Email and Password is required.', toastOptions);
       return false;
     } else if (password === '') {
@@ -42,23 +42,21 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      const { username, password } = values;
-      console.log(username, password);
-      // const { data } = await axios.post('/login', {
-      //   username,
-      //   password,
-      // });
-      // if (data.status === false) {
-      //   toast.error(data.msg, toastOptions);
-      // }
-      // if (data.status === true) {
-      //   localStorage.setItem(
-      //     process.env.REACT_APP_LOCALHOST_KEY,
-      //     JSON.stringify(data.user)
-      //   );
-
-      //   navigate('/');
-      // }
+      const { email, password } = values;
+      axios
+        .post('/login', { email, password })
+        .then((res) => {
+          console.log(res.data);
+          localStorage.setItem(
+            process.env.REACT_APP_LOCALHOST_KEY,
+            JSON.stringify(res.data.token)
+          );
+          navigate('/');
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          toast.error(err.response.data, toastOptions);
+        });
     }
   };
 
@@ -78,9 +76,9 @@ export default function Login() {
                   <div className="input-field">
                     <input
                       type="text"
-                      placeholder="Enter your username"
+                      placeholder="Enter your email"
                       required
-                      name="username"
+                      name="email"
                       onChange={(e) => handleChange(e)}
                       min="3"
                     />
@@ -111,7 +109,7 @@ export default function Login() {
                     </Link>
                   </div>
 
-                  <div className="button">
+                  <div className="btn">
                     <button type="submit">Login</button>
                   </div>
                 </form>
@@ -246,11 +244,11 @@ const FormContainer = styled.div`
     text-decoration: underline;
   }
 
-  .form .button {
+  .form .btn {
     margin-top: 30px;
   }
 
-  .form .button button{
+  .form .btn button{
     position: relative;
     height: 50px;
     width: 100%;
@@ -264,7 +262,7 @@ const FormContainer = styled.div`
     transition: all 0.3s ease;
   }
 
-  .button input:hover {
+  .btn button:hover {
     background-color: #265df2;
   }
 
