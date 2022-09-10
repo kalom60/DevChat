@@ -19,6 +19,12 @@ import axios from '../axiosInstance';
 
 function Register() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("devChatUser")) {
+      navigate('/');
+    }
+  }, []);
+
   const [values, setValues] = useState({
     firstName: '',
     lastName: '',
@@ -80,7 +86,8 @@ function Register() {
       axios
         .post('/register', user)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
+          localStorage.setItem("devChatUser", JSON.stringify(res.data))
           navigate('/login');
         })
         .catch((err) => {

@@ -18,7 +18,7 @@ export default function Login() {
     theme: 'dark',
   };
   useEffect(() => {
-    if (localStorage.getItem("devChat-user")) {
+    if (localStorage.getItem("devChatUser")) {
       navigate('/');
     }
   }, []);
@@ -47,9 +47,7 @@ export default function Login() {
         .post('/login', { email, password })
         .then((res) => {
           console.log(res.data);
-          localStorage.setItem(
-            process.env.REACT_APP_LOCALHOST_KEY,
-            JSON.stringify(res.data.token)
+          localStorage.setItem("devChatUser", JSON.stringify(res.data.token)
           );
           navigate('/');
         })
