@@ -95,9 +95,6 @@ export default function Login() {
                     <i className="icon">
                       <BiLock />
                     </i>
-                    <i className="showHidePW">
-                      <BiLowVision />
-                    </i>
                   </div>
 
                   {/* <div className="forget">
