@@ -20,28 +20,28 @@ function Chat() {
   const [face, setFace] = useState();
   const token = JSON.parse(localStorage.getItem('devChatUser'));
 
-  const [devs, setDevs] = useState([]);
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    const users = () => {
-      axios
-        .get('/users')
-        .then((res) => {
-          setDevs(res.data);
-          setUsers(res.data);
-        })
-        .catch((err) => console.log(err));
-    };
-    users();
-  }, []);
+  // const [devs, setDevs] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // useEffect(() => {
+  //   const users = () => {
+  //     axios
+  //       .get('/users')
+  //       .then((res) => {
+  //         setDevs(res.data);
+  //         setUsers(res.data);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   };
+  //   users();
+  // }, []);
 
-  const filterCards = (event) => {
-    const value = event.target.value.toLowerCase();
-    const filteredUsers = devs.filter((dev) =>
-      `${dev.firstName} ${dev.lastName}`.toLowerCase().includes(value)
-    );
-    setUsers(filteredUsers);
-  };
+  // const filterCards = (event) => {
+  //   const value = event.target.value.toLowerCase();
+  //   const filteredUsers = devs.filter((dev) =>
+  //     `${dev.firstName} ${dev.lastName}`.toLowerCase().includes(value)
+  //   );
+  //   setUsers(filteredUsers);
+  // };
 
   useEffect(() => {
     if (!token) {
@@ -91,7 +91,7 @@ function Chat() {
               </span>
             </Link>
           </div>
-          <div className="topbarCenter">
+          {/* <div className="topbarCenter">
             <div className="searchbar">
               <BiSearch className="searchIcon" />
               <input
@@ -100,7 +100,7 @@ function Chat() {
                 className="searchInput"
               />
             </div>
-          </div>
+          </div> */}
           <div className="topbarRight">
             <div className="topbarLinks">
               <Link to={'/Chat'} className="topbarLink">
