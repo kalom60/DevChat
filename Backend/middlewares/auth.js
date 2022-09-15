@@ -1,3 +1,4 @@
+require('dotenv').config();
 import jwt from 'jsonwebtoken';
 
 class AuthenticateToken {
@@ -8,7 +9,10 @@ class AuthenticateToken {
     if (token === null) return res.json('No token');
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user_id) => {
-      if (err) return res.json(err);
+      if (err) {
+        // console.log(err);
+        return res.json(err);
+      }
       req.user = user_id;
       next();
     });
