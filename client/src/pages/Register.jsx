@@ -1,30 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {
-  BiUser,
-  BiLock,
-  BiEnvelope,
-  BiNetworkChart,
-  BiWorld,
-  BiLockOpen,
-} from 'react-icons/bi';
-import { DiGithubBadge } from 'react-icons/di';
-import { FaCity } from 'react-icons/fa';
-import { AiFillLinkedin, AiFillExperiment } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from '../axiosInstance';
-// import { registerRoute } from '../utils/ApiRoutes';
+import { Avatar, Image } from 'antd';
+import 'antd/dist/antd.css';
+import { UserOutlined } from '@ant-design/icons';
 
 function Register() {
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("devChatUser")) {
+    if (localStorage.getItem('devChatUser')) {
       navigate('/');
     }
   }, []);
 
+  const avatars = [
+    'julie',
+    'jane',
+    'jocelyn',
+    'jai',
+    'josh',
+    'jon',
+    'jerry',
+    'jed',
+    'jordan',
+    'jazebelle',
+    'jaqueline',
+    'jeri',
+    'james',
+    'jia',
+    'jana',
+    'jude',
+    'josephine',
+    'joe',
+    'jenni',
+    'jodi',
+    'jean',
+    'jolee',
+    'jack',
+    'jeane',
+    'jake',
+    'jabala',
+    'jacques',
+    'jess',
+  ];
+
+  const [image, setImage] = useState(
+    `https://joeschmoe.io/api/v1/${
+      avatars[Math.floor(Math.random() * avatars.length)]
+    }`
+  );
   const [values, setValues] = useState({
     firstName: '',
     lastName: '',
@@ -75,6 +102,7 @@ function Register() {
         github,
         expreience,
         title,
+        photo: image,
         address: {
           country,
           city,
@@ -86,8 +114,8 @@ function Register() {
       axios
         .post('/register', user)
         .then((res) => {
-          // console.log(res.data);
-          localStorage.setItem("devChatUser", JSON.stringify(res.data))
+          console.log(res.data);
+          // localStorage.setItem('devChatUser', JSON.stringify(res.data));
           navigate('/login');
         })
         .catch((err) => {
@@ -141,6 +169,14 @@ function Register() {
     return true;
   };
 
+  const inputChange = (e) => {
+    setImage(
+      `https://joeschmoe.io/api/v1/${
+        avatars[Math.floor(Math.random() * avatars.length)]
+      }`
+    );
+  };
+
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
@@ -149,189 +185,198 @@ function Register() {
       <FormContainer>
         <div className="body">
           <div className="container">
-            <div className="devchat">
-              <h1>DevChat</h1>
-            </div>
-            <div className="forms">
-              <div className="form login">
-                <span className="title">Signup</span>
+            <header>Signup</header>
 
-                <form onSubmit={(event) => handleSubmit(event)}>
-                  <div className="form-side">
-                    <div className="left-side">
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your first name"
-                          required
-                          name="firstName"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiUser />
-                        </i>
-                      </div>
+            <form onSubmit={(event) => handleSubmit(event)}>
+              <div className="form first">
+                <div className="details personal">
+                  <span className="title">Identity Detail</span>
 
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your last name"
-                          required
-                          name="lastName"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiUser />
-                        </i>
-                      </div>
-
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your email"
-                          required
-                          name="email"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiEnvelope />
-                        </i>
-                      </div>
-
-                      <div className="input-field">
-                        <input
-                          type="password"
-                          placeholder="Enter your password"
-                          required
-                          name="password"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiLockOpen />
-                        </i>
-                      </div>
-
-                      <div className="input-field">
-                        <input
-                          type="password"
-                          placeholder="Confirm password"
-                          required
-                          name="confirmPassword"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiLock />
-                        </i>
-                      </div>
-
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your user name"
-                          required
-                          name="userName"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiUser />
-                        </i>
-                      </div>
+                  <div className="fields">
+                    <div className="input-field">
+                      <label>First Name</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your first name"
+                        required
+                        name="firstName"
+                        onChange={(e) => handleChange(e)}
+                      />
                     </div>
 
-                    <div className="right-side">
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your github account"
-                          required
-                          name="github"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <DiGithubBadge />
-                        </i>
-                      </div>
+                    <div className="input-field">
+                      <label>Last Name</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your last name"
+                        required
+                        name="lastName"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
 
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your linkedIn account"
-                          required
-                          name="linkedIn"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <AiFillLinkedin />
-                        </i>
-                      </div>
+                    <div className="input-field">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                        name="email"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
 
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your exprience"
-                          required
-                          name="expreience"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <AiFillExperiment />
-                        </i>
-                      </div>
+                    <div className="input-field">
+                      <label>Password</label>
+                      <input
+                        type="password"
+                        placeholder="Enter your password"
+                        required
+                        name="password"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
 
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your specialization"
-                          required
-                          name="title"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiNetworkChart />
-                        </i>
-                      </div>
+                    <div className="input-field">
+                      <label>Confirm Password</label>
+                      <input
+                        type="password"
+                        placeholder="Confirm password"
+                        required
+                        name="confirmPassword"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
 
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your country"
-                          required
-                          name="country"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <BiWorld />
-                        </i>
-                      </div>
-
-                      <div className="input-field">
-                        <input
-                          type="text"
-                          placeholder="Enter your city"
-                          required
-                          name="city"
-                          onChange={(e) => handleChange(e)}
-                        />
-                        <i className="icon">
-                          <FaCity />
-                        </i>
-                      </div>
+                    <div className="input-field">
+                      <label>User Name</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your user name"
+                        required
+                        name="userName"
+                        onChange={(e) => handleChange(e)}
+                      />
                     </div>
                   </div>
+                </div>
+
+                <div className="details ID">
+                  <span className="title">Personal Detail</span>
+
+                  <div className="fields">
+                    <div className="input-field">
+                      <label>Github</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your github account"
+                        required
+                        name="github"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
+
+                    <div className="input-field">
+                      <label>LinkedIn</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your linkedIn account"
+                        name="linkedIn"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
+
+                    <div className="input-field">
+                      <label>Experience</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your exprience"
+                        required
+                        name="expreience"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
+
+                    <div className="input-field">
+                      <label>Specialization</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your specialization"
+                        required
+                        name="title"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
+
+                    <div className="input-field">
+                      <label>Country</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your country"
+                        required
+                        name="country"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
+
+                    <div className="input-field">
+                      <label>City</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your city"
+                        required
+                        name="city"
+                        onChange={(e) => handleChange(e)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="form second">
+                <div className="details address">
+                  <span className="title">Avatar</span>
+
+                  <div className="fields">
+                    <div className="input-fields">
+                      <div className="avatar">
+                        <Avatar
+                          size={{
+                            xs: 24,
+                            sm: 32,
+                            md: 40,
+                            lg: 64,
+                            xl: 80,
+                            xxl: 100,
+                          }}
+                          icon={<UserOutlined />}
+                          src={<Image src={image} />}
+                        />
+                      </div>
+                      <input
+                        type="button"
+                        className="picbtn"
+                        name="photo"
+                        value="New"
+                        onClick={(e) => inputChange(e)}
+                      />
+                    </div>
+                  </div>
+
                   <div className="btn">
                     <button type="submit">Signup</button>
                   </div>
-                </form>
-
-                <div className="login-signup">
-                  <span className="text">
-                    Already a member?{'   '}
-                    <Link to="/login" className="login-text">
-                      Login
-                    </Link>
-                  </span>
                 </div>
               </div>
+            </form>
+
+            <div className="login-signup">
+              <span className="text">
+                Already a member?{'   '}
+                <Link to="/login" className="login-text">
+                  Login
+                </Link>
+              </span>
             </div>
           </div>
         </div>
@@ -342,142 +387,142 @@ function Register() {
 }
 
 const FormContainer = styled.div`
-.body {
-    height: 100vh;
+  .body {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EEF2F7;
+    background-color: #eef2f7;
   }
 
   .container {
-    position: relavtive;
-    max-width: 1230px;
+    position: relative;
+    max-width: 900px;
     width: 100%;
-    background: #fff;
-    border-radius: 10px;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0 15px;
+    background-color: #fff;
     box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);
   }
 
-  .container .devchat {
-    margin-top: 20px;
-  }
-
-  .devchat h1 {
-    text-align: center;
-  }
-
-  .container .form {
-    padding: 30px;
-  }
-
-  .container .form .title {
+  .container header {
     position: relative;
-    font-size: 27px;
+    font-size: 20px;
     font-weight: 600;
+    color: #333;
   }
 
-  .form-side {
-    display: flex; 
-    justify-content: space-between;
-  }
-
-  .left-side {
-    margin-left: 40px;
-    width: 35%;
-  }
-
-  .right-side {
-    margin-right: 40px;
-    width: 35%;
-  }
-
-  .form .title::before {
+  .container header::before {
     content: '';
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -2px;
     height: 3px;
-    width: 30px;
+    width: 27px;
+    border-radius: 8px;
     background-color: #4070f4;
-    border-radius: 25px;
   }
 
-  .form .input-field {
+  .container form {
     position: relative;
-    height: 50px;
-    width: 100%;
+    margin-top: 16px;
+    min-height: 490px;
+    background-color: #fff;
+  }
+
+  .container form .details {
     margin-top: 30px;
   }
 
-  .input-field input {
-    postion: absolute;
-    height: 100%;
-    width: 100%;
-    padding: 0 35px;
-    border: none;
-    outline: none;
+  .container form .details.ID {
+    margin-top: 10px;
+  }
+
+  .container form .title {
+    display: block;
+    margin-bottom: 8px;
     font-size: 16px;
-    border-bottom: 2px solid #ccc;
-    border-top: 2px solid transparent;
-    transition: all 0.2s ease;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+  }
+
+  .container form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  form .fields .input-field {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 3 - 15px);
+    margin: 4px 0;
+  }
+
+  .input-field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2e2e2e;
+  }
+
+  .input-field input {
+    height: 42px;
+    margin: 8px 0;
+    padding: 0 15px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
   }
 
   .input-field input:is(:focus, :valid) {
-    border-bottom-color: #4070f4;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
   }
 
-  .input-field i {
-    margin-top: 10px;
-    position: absolute;
-    top: 50%
-    transform: translateY(-50%);
-    color: #999;
-    font-size: 23px;
-    transition: all 0.2s ease;
+  .container form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    background-color: #4070f4;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    transition: all 0.3s linear;
+    cursor: pointer;
   }
 
-  .input-field input:is(:focus, :valid) ~ i{
-    color: #4070f4;
+  form button:hover {
+    background-color: #265df2;
   }
 
-  .input-field i.icon {
-    left: 0;
+  form button i {
+    margin: 0 6px;
   }
 
-  .input-field i.showHidePW {
-    right: 0;
-  }
-
-  .form .forget{
-    margin-top: 20px;
-    position: relative;
-  }
-
-  .form .text {
-    color: #333;
-    font-size: 14px;
-  }
-
-  .form .forget .text {
-    color: #4070f4;
-    text-decoration: none;
-  }
-
-  .form .forget .text:hover {
-    text-decoration: underline;
+  .avatar {
+    margin-bottom: 20px;
   }
 
   .form .btn {
     margin-top: 30px;
   }
 
-  .form .btn button{
+  .form .btn button {
     position: relative;
     height: 50px;
     width: 50%;
     margin-top: 20px;
-    margin-left: 25%;
+    margin-left: 39%;
     border: none;
     color: #fff;
     font-size: 17px;
@@ -490,6 +535,29 @@ const FormContainer = styled.div`
 
   .btn button:hover {
     background-color: #265df2;
+  }
+
+  .form .picbtn {
+    margin-top: 30px;
+  }
+
+  .form .picbtn {
+    margin-top: 1px;
+    padding: 5px 10px 5px;
+    margin-left: 20%;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: #4070f4;
+    transition: all 0.3s ease;
+  }
+
+  .picbtn:hover {
+    background-color: #265df2;
+    cursor: pointer;
   }
 
   .login-signup {
