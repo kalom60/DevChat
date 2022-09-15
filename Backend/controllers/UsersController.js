@@ -68,14 +68,17 @@ class UsersController {
     return res.json({ user });
   }
 
-  static async editMe(req, res) {}
+  static async editMe(req, res) {
+    // console.log('now');
+    // console.log(req.body.user);
+  }
 
   static async getDev(req, res) {
     const { id } = req.query;
     console.log(id);
 
     const user = await User.findOne({ _id: id });
-    if (user === null) return res.json('Wrong id');
+    if (user === null) return res.status(404).json('Wrong id');
 
     const {
       firstName,
@@ -104,9 +107,10 @@ class UsersController {
     try {
       const users = await User.find();
       // console.log(users);
-      return res.json(users);
+      return res.status(200).json(users);
     } catch (err) {
       console.log(err);
+      res.status(404).json('Wrong id');
     }
   }
 }
