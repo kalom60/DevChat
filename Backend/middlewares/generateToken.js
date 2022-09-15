@@ -10,7 +10,7 @@ class GenerateToken {
   }
   static async generateRefreshToken(user) {
     const token = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: '30m',
+      expiresIn: '24h',
     });
     return token;
   }
