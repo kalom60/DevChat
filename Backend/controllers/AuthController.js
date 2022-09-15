@@ -14,21 +14,27 @@ class AuthController {
 
     try {
       if (await bcrypt.compare(password, user.password)) {
-        const id = user._id.toString();
-        const user_id = { id: id };
+        if (user.confirmed) {
+          const id = user._id.toString();
+          const user_id = { id: id };
 
-        const token = await GenerateToken.generateAccessToken(user_id);
-        const refreshToken = await GenerateToken.generateRefreshToken(user_id);
+          const token = await GenerateToken.generateAccessToken(user_id);
+          const refreshToken = await GenerateToken.generateRefreshToken(
+            user_id
+          );
 
-        await redisClient.set(refreshToken, id, 300);
-        res.cookie('jwt', refreshToken, {
-          httpOnly: true,
-          sameSite: 'lax',
-          maxAge: 5 * 60 * 1000,
-        });
-        res.json({ token });
+          await redisClient.set(refreshToken, id, 300);
+          res.cookie('jwt', refreshToken, {
+            httpOnly: true,
+            sameSite: 'lax',
+            maxAge: 5 * 60 * 1000,
+          });
+          res.status(200).json({ token });
+        } else {
+          return res.status(404).json('Please confirm your email');
+        }
       } else {
-        res.json('Wrong Password');
+        res.status(404).json('Wrong Password');
       }
     } catch (err) {
       res.json(err);
