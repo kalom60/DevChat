@@ -1,38 +1,37 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-function Contacts({contacts, changeChat}) {
-  const [currentSelected, setCurrentSelected] = useState(undefined)
+function Contacts({ contacts, changeChat }) {
+  const [currentSelected, setCurrentSelected] = useState(undefined);
 
   const changeCurrentChat = (index, contact) => {
     setCurrentSelected(index);
-    changeChat(contact)
-  }
+    changeChat(contact);
+  };
   return (
     <Container>
       <div className="brand">
         <h3>DevChat</h3>
       </div>
       <div className="contacts">
-        {
-          contacts.map((contact, index)=> {
-            return (
-              <div key={index}
-                className={`contact ${
-                  index === currentSelected ? "selected" : ""
-                }`}
-                onClick={()=> changeCurrentChat(index,contact)}
-                >
-                  <div className="username">
-                    <h3>{contact.userName}</h3>
-                  </div>
+        {contacts.map((contact, index) => {
+          return (
+            <div
+              key={index}
+              className={`contact ${
+                index === currentSelected ? 'selected' : ''
+              }`}
+              onClick={() => changeCurrentChat(index, contact)}
+            >
+              <div className="username">
+                <h3>{contact.userName}</h3>
               </div>
-            )
-          })
-        }
+            </div>
+          );
+        })}
       </div>
     </Container>
-  )
+  );
 }
 
 const Container = styled.div`
@@ -82,7 +81,7 @@ const Container = styled.div`
       }
     }
     .selected {
-      background-color: #FFA500;
+      background-color: #ffa500;
     }
   }
 
@@ -106,6 +105,6 @@ const Container = styled.div`
       }
     }
   }
-`; 
+`;
 
-export default Contacts
+export default Contacts;
