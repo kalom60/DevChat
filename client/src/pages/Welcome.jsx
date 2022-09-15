@@ -79,7 +79,7 @@ function Welcome() {
             <Card key={index} user={dev} />
           ))}
 
-          {users.map((dev, index) => (
+          {/* {users.map((dev, index) => (
             <Card key={index} user={dev} />
           ))}
 
@@ -97,7 +97,7 @@ function Welcome() {
 
           {users.map((dev, index) => (
             <Card key={index} user={dev} />
-          ))}
+          ))} */}
         </div>
       </section>
     </>
