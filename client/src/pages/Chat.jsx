@@ -107,7 +107,7 @@ function Chat() {
                 Chat <BiChat />{' '}
               </Link>
 
-              <Link to={'/Chat'} className="topbarLink">
+              <Link to={'/Profile'} className="topbarLink">
                 Profile <BiUser />{' '}
               </Link>
             </div>
