@@ -27,8 +27,8 @@ import Logout from '../components/Logout';
 function Register() {
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem('devChatUser'));
-  const [devs, setDevs] = useState([]);
-  const [users, setUsers] = useState([]);
+  // const [devs, setDevs] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [me, setMe] = useState({});
   let user = {};
   const [values, setValues] = useState({
@@ -105,6 +105,18 @@ function Register() {
     //   };
 
     console.log(user);
+    console.log('here');
+    axios
+      .put('/edit', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          user,
+        },
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
     //   const { data } = await axios.post('/register', {
     //     firstName,
@@ -130,54 +142,56 @@ function Register() {
     // }
   };
 
-  //   const handleValidation = () => {
-  //     const { password, confirmPassword, userName, email } = values;
-  //     if (password !== confirmPassword) {
-  //       toast.error('password should be the same', toastOptions);
-  //       return false;
-  //     } else if (userName.length < 3) {
-  //       toast.error('username should be greater than 3 characters', toastOptions);
-  //       return false;
-  //     } else if (password.length < 8) {
-  //       toast.error(
-  //         'password should be equal to or greater than 8 characters',
-  //         toastOptions
-  //       );
-  //       return false;
-  //     } else if (email === '') {
-  //       toast.error('email is required', toastOptions);
-  //       return false;
-  //     }
-  //     return true;
-  //   };
+  // const handleValidation = () => {
+  //   const { password, confirmPassword, userName, email } = values;
+  //   if (password !== confirmPassword) {
+  //     toast.error('password should be the same', toastOptions);
+  //     return false;
+  //   } else if (userName.length < 3) {
+  //     toast.error('username should be greater than 3 characters', toastOptions);
+  //     return false;
+  //   } else if (password.length < 8) {
+  //     toast.error(
+  //       'password should be equal to or greater than 8 characters',
+  //       toastOptions
+  //     );
+  //     return false;
+  //   } else if (email === '') {
+  //     toast.error('email is required', toastOptions);
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   //   const handleChange = (event) => {
   //     setValues({ ...values, [event.target.name]: event.target.value });
   //   };
 
-  useEffect(() => {
-    const users = () => {
-      axios
-        .get('/users')
-        .then((res) => {
-          setDevs(res.data);
-          setUsers(res.data);
-        })
-        .catch((err) => console.log(err));
-    };
-    users();
-  }, []);
+  // useEffect(() => {
+  //   const users = () => {
+  //     axios
+  //       .get('/users')
+  //       .then((res) => {
+  //         setDevs(res.data);
+  //         setUsers(res.data);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   };
+  //   users();
+  // }, []);
 
-  const filterCards = (event) => {
-    const value = event.target.value.toLowerCase();
-    const filteredUsers = devs.filter((dev) =>
-      `${dev.firstName} ${dev.lastName}`.toLowerCase().includes(value)
-    );
-    setUsers(filteredUsers);
-  };
+  // const filterCards = (event) => {
+  //   const value = event.target.value.toLowerCase();
+  //   const filteredUsers = devs.filter((dev) =>
+  //     `${dev.firstName} ${dev.lastName}`.toLowerCase().includes(value)
+  //   );
+  //   setUsers(filteredUsers);
+  // };
 
   const handleChange = (event) => {
-    user.event.target.name = event.target.value;
+    const key = event.target.name;
+    // console.log(key);
+    user[key] = event.target.value;
   };
 
   return (
@@ -191,7 +205,7 @@ function Register() {
               </span>
             </Link>
           </div>
-          <div className="topbarCenter">
+          {/* <div className="topbarCenter">
             <div className="searchbar">
               <BiSearch className="searchIcon" />
               <input
@@ -200,7 +214,7 @@ function Register() {
                 className="searchInput"
               />
             </div>
-          </div>
+          </div> */}
           <div className="topbarRight">
             <div className="topbarLinks">
               <Link to={'/Chat'} className="topbarLink">
@@ -236,7 +250,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.firstName || ''}
-                          required
                           name="firstName"
                           onChange={(e) => handleChange(e)}
                         />
@@ -249,7 +262,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.lastName || ''}
-                          required
                           name="lasttName"
                           onChange={(e) => handleChange(e)}
                         />
@@ -258,24 +270,22 @@ function Register() {
                         </i>
                       </div>
 
-                      <div className="input-field">
+                      {/* <div className="input-field">
                         <input
                           type="password"
                           placeholder="Enter your password"
-                          required
                           name="password"
                           onChange={(e) => handleChange(e)}
                         />
                         <i className="icon">
                           <BiLockOpen />
                         </i>
-                      </div>
+                      </div> */}
 
                       <div className="input-field">
                         <input
                           type="text"
                           placeholder={me.user?.github || ''}
-                          required
                           name="github"
                           onChange={(e) => handleChange(e)}
                         />
@@ -288,7 +298,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.linkedIn || ''}
-                          required
                           name="linkedIn"
                           onChange={(e) => handleChange(e)}
                         />
@@ -303,7 +312,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.expreience || ''}
-                          required
                           name="expreience"
                           onChange={(e) => handleChange(e)}
                         />
@@ -316,7 +324,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.title || ''}
-                          required
                           name="specialization"
                           onChange={(e) => handleChange(e)}
                         />
@@ -329,7 +336,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.address.country || ''}
-                          required
                           name="country"
                           onChange={(e) => handleChange(e)}
                         />
@@ -342,7 +348,6 @@ function Register() {
                         <input
                           type="text"
                           placeholder={me.user?.address.city || ''}
-                          required
                           name="city"
                           onChange={(e) => handleChange(e)}
                         />
@@ -352,9 +357,9 @@ function Register() {
                       </div>
                     </div>
                   </div>
-                  <div className="button">
+                  {/* <div className="button">
                     <button type="submit">Update</button>
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
