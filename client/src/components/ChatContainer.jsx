@@ -1,33 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState,useEffect } from 'react'
-import axios from '../axiosInstance'
-import styled from 'styled-components'
-import ChatInput from './ChatInput'
-import Logout from './Logout'
+import React, { useState, useEffect } from 'react';
+import axios from '../axiosInstance';
+import styled from 'styled-components';
+import ChatInput from './ChatInput';
+import Logout from './Logout';
 
+function ChatContainer({ currentChat, currentUser }) {
+  const token = JSON.parse(localStorage.getItem('devChatUser'));
+  const [messages, setMessages] = useState([]);
 
-function ChatContainer({currentChat, currentUser}) {
-  const [messages, setMessages] = useState([])
-  
   useEffect(() => {
+    console.log(currentChat);
     const fetchData = async () => {
-      const response = await axios.post('/msg', {
-        from: currentUser._id,
-        to: currentChat._id,
-      })
-      console.log(response.data)
-      setMessages(response.data)
-    }
-    fetchData()
-  }, [currentChat])
+      const response = await axios.get(`/msg?dev=${currentChat._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response.data);
+      setMessages([response.data]);
+    };
+    fetchData();
+  }, [currentChat]);
 
   const handleSendMsg = async (msg) => {
     await axios.post('/msg', {
       from: currentUser._id,
       to: currentChat._id,
       message: msg,
-    })
-  }
+    });
+  };
   return (
     <Container>
       <div className="chat-header">
@@ -44,11 +46,11 @@ function ChatContainer({currentChat, currentUser}) {
             <div>
               <div
                 className={`message ${
-                  message.fromSelf ? "sended" : "recieved"
+                  message.fromSelf ? 'sended' : 'recieved'
                 }`}
               >
                 <div className="content ">
-                  <p>{message.message}</p>
+                  <p>{message.from.text}</p>
                 </div>
               </div>
             </div>
@@ -75,12 +77,11 @@ function ChatContainer({currentChat, currentUser}) {
     //     </div>
     //     <ChatInput handleSendMsg={handleSendMsg} />
     // </Container>
-  )
+  );
 }
 
-
 const Container = styled.div`
-display: grid;
+  display: grid;
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
   overflow: hidden;
@@ -145,6 +146,6 @@ display: grid;
       }
     }
   }
-`
+`;
 
-export default ChatContainer
+export default ChatContainer;
