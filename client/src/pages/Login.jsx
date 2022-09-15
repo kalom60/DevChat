@@ -97,12 +97,6 @@ export default function Login() {
                     </i>
                   </div>
 
-                  {/* <div className="forget">
-                    <Link to="/register" className="text">
-                      Forget password?
-                    </Link>
-                  </div> */}
-
                   <div className="btn">
                     <button type="submit">Login</button>
                   </div>
