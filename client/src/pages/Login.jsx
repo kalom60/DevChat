@@ -18,7 +18,7 @@ export default function Login() {
     theme: 'dark',
   };
   useEffect(() => {
-    if (localStorage.getItem("devChatUser")) {
+    if (localStorage.getItem('devChatUser')) {
       navigate('/');
     }
   }, []);
@@ -47,8 +47,7 @@ export default function Login() {
         .post('/login', { email, password })
         .then((res) => {
           console.log(res.data);
-          localStorage.setItem("devChatUser", JSON.stringify(res.data.token)
-          );
+          localStorage.setItem('devChatUser', JSON.stringify(res.data.token));
           navigate('/');
         })
         .catch((err) => {
@@ -101,11 +100,11 @@ export default function Login() {
                     </i>
                   </div>
 
-                  <div className="forget">
+                  {/* <div className="forget">
                     <Link to="/register" className="text">
                       Forget password?
                     </Link>
-                  </div>
+                  </div> */}
 
                   <div className="btn">
                     <button type="submit">Login</button>
