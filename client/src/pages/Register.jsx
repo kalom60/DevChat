@@ -194,7 +194,7 @@ function Register() {
 
                   <div className="fields">
                     <div className="input-field">
-                      <label>First Name</label>
+                      <label>First Name *</label>
                       <input
                         type="text"
                         placeholder="Enter your first name"
@@ -205,7 +205,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Last Name</label>
+                      <label>Last Name *</label>
                       <input
                         type="text"
                         placeholder="Enter your last name"
@@ -216,7 +216,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Email</label>
+                      <label>Email *</label>
                       <input
                         type="email"
                         placeholder="Enter your email"
@@ -227,7 +227,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Password</label>
+                      <label>Password *</label>
                       <input
                         type="password"
                         placeholder="Enter your password"
@@ -238,7 +238,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Confirm Password</label>
+                      <label>Confirm Password *</label>
                       <input
                         type="password"
                         placeholder="Confirm password"
@@ -249,7 +249,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>User Name</label>
+                      <label>User Name *</label>
                       <input
                         type="text"
                         placeholder="Enter your user name"
@@ -266,7 +266,7 @@ function Register() {
 
                   <div className="fields">
                     <div className="input-field">
-                      <label>Github</label>
+                      <label>Github *</label>
                       <input
                         type="text"
                         placeholder="Enter your github account"
@@ -287,7 +287,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Experience</label>
+                      <label>Experience *</label>
                       <input
                         type="text"
                         placeholder="Enter your exprience"
@@ -298,7 +298,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Specialization</label>
+                      <label>Specialization *</label>
                       <input
                         type="text"
                         placeholder="Enter your specialization"
@@ -309,7 +309,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>Country</label>
+                      <label>Country *</label>
                       <input
                         type="text"
                         placeholder="Enter your country"
@@ -320,7 +320,7 @@ function Register() {
                     </div>
 
                     <div className="input-field">
-                      <label>City</label>
+                      <label>City *</label>
                       <input
                         type="text"
                         placeholder="Enter your city"
