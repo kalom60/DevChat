@@ -5,9 +5,9 @@
 
 <p>Backends</p>
 :boy: <b>Anteneh Bizuneh</b> <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="https://twitter.com/">Twitter</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/">Github</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://linkedin.com">Linkedin</a> ]<br><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ :twitter: <a href="https://twitter.com/">Twitter</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :github: <a href="https://github.com/">Github</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :linkedin: <a href="https://linkedin.com">Linkedin</a> ]<br><br>
 :boy: <b>Kaleab Tesfaye</b> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="https://twitter.com/samdre60">Twitter</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/kalom60">Github</a>
@@ -73,32 +73,31 @@
 <h4>For installation use the table below</h4>
 <p>(NB: Installation commands are for Linux only, please find the required installation process for each package based on your OS)</p><br>
 
-| Backend Packages   | Installation            |
-| ---------- | ----------------------- |
-| NodeJS     | sudo apt install nodejs |
-| npm        | sudo apt install npm    |
-| bcrypt     | npm i bcrypt            |
-| cors       | npm i cors              |
-| express    | npm i express           |
-| jwt        | npm i jsonwebtoken      |
-| mongoose   | npm i mongoose          |
-| nodemailer | npm i nodemailer        |
-| redis      | npm i redis             |
+| Backend Packages | Installation            |
+| ---------------- | ----------------------- |
+| NodeJS           | sudo apt install nodejs |
+| npm              | sudo apt install npm    |
+| bcrypt           | npm i bcrypt            |
+| cors             | npm i cors              |
+| express          | npm i express           |
+| jwt              | npm i jsonwebtoken      |
+| mongoose         | npm i mongoose          |
+| nodemailer       | npm i nodemailer        |
+| redis            | npm i redis             |
 
 ---
 
-| Frontend Packages   | Installation            |
-| ---------- | ----------------------- |
-| NodeJS     | sudo apt install nodejs |
-| npm        | sudo apt install npm    |
-| antd       | npm i antd              |
-| axios      | npm i axios             |
-| classnames | npm i classnames        |
-| emoji-picker-react   | npm i emoji-picker-react  |
-| react-icons          | npm i react-icons         |
-| react-toastify       | npm i react-toastify      |
-| socket.io-client     | npm i socket.io-client    |
-| web-vitals           | npm i web-vitals          |
+| Frontend Packages  | Installation             |
+| ------------------ | ------------------------ |
+| NodeJS             | sudo apt install nodejs  |
+| npm                | sudo apt install npm     |
+| antd               | npm i antd               |
+| axios              | npm i axios              |
+| classnames         | npm i classnames         |
+| emoji-picker-react | npm i emoji-picker-react |
+| react-icons        | npm i react-icons        |
+| react-toastify     | npm i react-toastify     |
+| socket.io-client   | npm i socket.io-client   |
+| web-vitals         | npm i web-vitals         |
 
 ---
-
