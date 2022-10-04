@@ -5,9 +5,9 @@
 
 <p>Backends</p>
 :boy: <b>Anteneh Bizuneh</b> <br>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ :twitter: <a href="https://twitter.com/">Twitter</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :github: <a href="https://github.com/">Github</a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :linkedin: <a href="https://linkedin.com">Linkedin</a> ]<br><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="https://twitter.com/">Twitter</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/">Github</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://linkedin.com">Linkedin</a> ]<br><br>
 :boy: <b>Kaleab Tesfaye</b> <br>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <a href="https://twitter.com/samdre60">Twitter</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/kalom60">Github</a>
