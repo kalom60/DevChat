@@ -73,7 +73,6 @@
 <h4>For installation use the table below</h4>
 <p>(NB: Installation commands are for Linux only, please find the required installation process for each package based on your OS)</p><br>
 
-| ---------- | ----------------------- |
 | Backend Packages   | Installation            |
 | ---------- | ----------------------- |
 | NodeJS     | sudo apt install nodejs |
@@ -88,7 +87,6 @@
 
 ---
 
-| ---------- | ----------------------- |
 | Frontend Packages   | Installation            |
 | ---------- | ----------------------- |
 | NodeJS     | sudo apt install nodejs |
